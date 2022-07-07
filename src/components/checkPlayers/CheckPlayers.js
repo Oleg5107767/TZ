@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
     root: {
-        color: 'white'
+        color: 'white',
     }
 });
 const CheckPlayers = () => {

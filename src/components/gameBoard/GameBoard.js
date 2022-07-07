@@ -5,7 +5,7 @@ import {Box} from "@material-ui/core";
 import { makeStyles } from '@material-ui/styles';
 import {playerWin, playerWinSecond} from '../../actions';
 
-import  './GameBoard.css'
+
 
 const useStyles = makeStyles({
     
@@ -13,8 +13,6 @@ const useStyles = makeStyles({
             width: '300px',
             height: '300px',
            // borderCollapse: 'collapse',
-            /*margin: 50px auto;*/
-            
             backgroundColor: '#44425e',
             '& :first-child' :{
                 borderLeftColor: 'transparent',

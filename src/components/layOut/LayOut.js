@@ -9,20 +9,21 @@ const useStyles = makeStyles({
     root: {
         width: 'auto',
         height: 'auto',
-    background: '#545f7d',
-    padding: '20px',
-    margin: '0'
+        background: '#545f7d',
+        padding: '20px ',
     },
   });
 const LayOut = () => {
   
     const classes = useStyles();
-    const startGame = <PlayerForm/>;
-  //  const game = !startGame ? : 
-   // const gameProcess =
+    //const startGame = <PlayerForm/>;
+
   
     return(
-        <Container className={classes.root}>
+        <Container 
+            className={classes.root} 
+            maxWidth="xl"
+        >
             <PlayerForm/>
             <Grid 
                 container
@@ -30,10 +31,10 @@ const LayOut = () => {
                 direction="row"
                 justify="center"
             >
-                <Grid item lg={5}>
+                <Grid item lg={4}>
                     <GameBoard/>
                 </Grid>
-                <Grid item lg={5}>
+                <Grid item lg={6}>
                     
                     <CheckPlayers/>
                 </Grid>
