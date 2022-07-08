@@ -16,3 +16,10 @@ export const playerWinSecond = (countPlayerSecond) => {
         payload: countPlayerSecond
     }
 }
+export const registeredPlayers = () => {
+    return{
+        type: 'REGISTERED_PLAYERS',
+        payload: false
+    }
+}
+

@@ -1,6 +1,6 @@
 
 import React,{useState,useEffect} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {Box} from "@material-ui/core";
 import { makeStyles } from '@material-ui/styles';
 import {playerWin, playerWinSecond} from '../../actions';
@@ -63,6 +63,10 @@ const GameBoard = () => {
     const [countWinPlayer, setCountWinPlayer] = useState(0);
     const [countWinPlayerSecond, setCountWinPlayerSecond] = useState(0);
     const [playerMove, setPlayerMove] = useState(0);
+
+    const {players, } = useSelector(state => state);
+    const {user, userSecond} = players;
+
     const classes = useStyles();
     const dispatch = useDispatch();
 
@@ -102,6 +106,7 @@ const GameBoard = () => {
                 
                if(playerLine === 'X'){
                    setCountWinPlayer(countWinPlayer + 1) 
+                   alert(`Победил ${user}`)
                }else if(playerLine === 'O'){
                    setCountWinPlayerSecond(countWinPlayerSecond + 1)
                } 

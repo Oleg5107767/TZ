@@ -1,12 +1,17 @@
 import React,{useState} from "react";
 import { useDispatch, useSelector} from 'react-redux';
 import { Portal, Button, Grid } from '@material-ui/core';
-import { playerName } from '../../actions';
+import { playerName, registeredPlayers } from '../../actions';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
   root: {
-    position: 'absolute',
+    position: 'fixed',
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'black',
+    top: '0',
+    left: '0'
   },
   inputName: {
     width: '200px',
@@ -22,8 +27,14 @@ const useStyles = makeStyles({
     height: '25px',
     backgroundColor: 'white',
     border: '1px solid silver',
-    margin: '20px 0 20px 0'
-  }
+    margin: '20px 0 20px 0',
+    fontWeight: 'bold'
+  },
+  text:{
+    color:'white',
+    padding: '16px',
+  },
+
 });
 
 const initialValue ={
@@ -33,9 +44,14 @@ const initialValue ={
 }
 const PlayerForm = () => {
   const [users,setUsers] = useState(initialValue);
-  const [show, setShow] = useState(true);
+ // const [show, setShow] = useState(true);
+  const {showRegisteredFlag} = useSelector(state => state);
+
   const dispatch = useDispatch();
   const classes = useStyles();
+
+
+
 
   const handleName = (e) => {
     e.preventDefault();
@@ -47,7 +63,7 @@ const PlayerForm = () => {
         })
   }
 
-  console.log(users)
+
 
   const savedNames = () => {
 
@@ -55,35 +71,64 @@ const PlayerForm = () => {
       alert('zapolni')
     }else{
       dispatch(playerName(users))
-      setShow(false)
+ 
+      dispatch(registeredPlayers())
     }
-
+    
   }
+
     return(  
         <>
-          {show ? (
+          {showRegisteredFlag ? (
             <Portal >
               <Grid
                 container
                 spacing={0}
                 direction="column"
-                justify="center"
+                justifyContent="center"
+                alignItems="center"
+                className={classes.root}
               >
                 <Grid>
-                  <input
-                    className={classes.inputName} 
-                    onChange={ e => handleName(e)}
-                    name='user'
-                    placeholder='please choose name'
-                  />
+                  <h1 className={classes.text}>Welcome to Tic-Tac-Toe</h1>
                 </Grid>
-                <Grid>
-                  <input 
-                    className={classes.inputName}
-                    onChange={e => handleName(e)}
-                    name='userSecond'
-                    placeholder='please choose name'
-                  />
+                <Grid 
+                  container
+                  spacing={0}
+                  direction="row"
+                  justifyContent="center"
+                  alignItems="center"
+                  >
+                    <Grid item>
+                      <h3 className={classes.text}>Player   </h3>
+                    </Grid> 
+                    <Grid item>
+                      <input
+                        className={classes.inputName} 
+                        onChange={ e => handleName(e)}
+                        name='user'
+                        placeholder='please choose name'
+                      />
+                    </Grid>
+                </Grid>
+                <Grid 
+                  container
+                  spacing={0}
+                  direction="row"
+                  justifyContent="center"
+                  alignItems="center"
+                >
+                  <Grid item>
+                    <h3 className={classes.text}> Player 2 </h3>
+                  </Grid>
+                  <Grid>
+                    <input 
+                      className={classes.inputName}
+                      onChange={e => handleName(e)}
+                      name='userSecond'
+                      placeholder='please choose name'
+                    />
+                  </Grid>
                 </Grid>
                 <Grid>
                   <Button onClick={savedNames} className={classes.button}>START</Button>
@@ -91,19 +136,6 @@ const PlayerForm = () => {
               </Grid>
             </Portal> 
             ) : null}
-               {/* <input 
-                    onChange={ e => handleName(e)}
-                    name='user'
-                    placeholder='please choose name'
-                >
-                </input>
-                <input 
-                    onChange={e => handleName(e)}
-                    name='userSecond'
-                    placeholder='please choose name'
-                >
-                </input>
-    <button onClick={registName}></button>*/}
         </>
     )
 }
