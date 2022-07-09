@@ -1,20 +1,46 @@
-
+import React from "react";
 import PlayerForm from "../playerForm/PlayerForm";
-import Game from "../game/Game";
+import GameBoard from "../gameBoard/GameBoard";
+import CheckPlayers from "../checkPlayers/CheckPlayers";
+import {Container, Grid} from "@material-ui/core"
+import { makeStyles } from '@material-ui/styles';
 
-import { useSelector} from 'react-redux';
+
+const useStyles = makeStyles({
+    root: {
+        background: '#545f7d',
+        padding: '40px ',
+        top: '0',
+        left: '0',
+        minHeight: '100vh',
+    },
+  }); 
 
 const LayOut = () => {
-    const {showRegisteredFlag} = useSelector(state => state);
-
-
-  const content = showRegisteredFlag ? <PlayerForm/> : <Game/>
+    const classes = useStyles();
+    
     return(
         <>
-            {content}
-        </>
-        
-       
+            <PlayerForm/> 
+            <Container 
+                className={classes.root} 
+                maxWidth="xl"
+            >
+                <Grid 
+                    container
+                    spacing={0}
+                    direction="row"
+                    justifyContent="center"
+                >
+                    <Grid item lg={6}>
+                        <GameBoard/>
+                    </Grid>
+                    <Grid item lg={6}>
+                        <CheckPlayers/>
+                    </Grid>
+                </Grid>
+            </Container>
+        </>    
     )
 }
 export default LayOut;

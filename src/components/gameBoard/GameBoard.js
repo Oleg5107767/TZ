@@ -1,4 +1,3 @@
-
 import React,{useState,useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Box} from "@material-ui/core";
@@ -10,9 +9,8 @@ import {playerWin, playerWinSecond} from '../../actions';
 const useStyles = makeStyles({
     
         tic: {
-            width: '300px',
-            height: '300px',
-           // borderCollapse: 'collapse',
+            width: '499px',
+            height: '500px',
             backgroundColor: '#44425e',
             '& :first-child' :{
                 borderLeftColor: 'transparent',
@@ -44,13 +42,13 @@ const useStyles = makeStyles({
            },
           },
           square: {
-            width: '100px',
-            height: '100px',
+            width: '166px',
+            height: '167px',
             border: '2px solid #a855c1',
             float: 'left',
             boxSizing: 'border-box',
             color: 'white',
-            fontSize: '50px',
+            fontSize: '180px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -64,7 +62,7 @@ const GameBoard = () => {
     const [countWinPlayerSecond, setCountWinPlayerSecond] = useState(0);
     const [playerMove, setPlayerMove] = useState(0);
 
-    const {players, } = useSelector(state => state);
+    const {players } = useSelector(state => state);
     const {user, userSecond} = players;
 
     const classes = useStyles();
@@ -95,27 +93,26 @@ const GameBoard = () => {
 
     const gameWin = () => {
         let playerLine = playerMove % 2 === 0 ? 'X' : 'O';
-     
-       for(let i = 0; i< 8; i++) {
+        
+        for(let i = 0; i< 8; i++) {
            let  line = winnerCombination[i]  
-            
-           if(squares[line[0]] === playerLine &&
+           
+            if(squares[line[0]] === playerLine &&
                squares[line[1]] === playerLine &&
                squares[line[2]] === playerLine ){
-                console.log(playerLine, 'win')
-                
-               if(playerLine === 'X'){
+     
+                if(playerLine === 'X'){
                    setCountWinPlayer(countWinPlayer + 1) 
                    alert(`Победил ${user}`)
-               }else if(playerLine === 'O'){
+                }else if(playerLine === 'O'){
                    setCountWinPlayerSecond(countWinPlayerSecond + 1)
-               } 
+                   alert(`Победил ${userSecond}`)
+                }
+
                 setSquares(Array(9).fill(null))
                 setPlayerMove(0)
             }
         }   
-               //    setSquares(Array(9).fill(null))
-               //    setPlayerMove(0)
     }
  
   
@@ -129,10 +126,9 @@ const GameBoard = () => {
            setPlayerMove(player => player + 1)
            setSquares([...currentSquare])
        }else{
-           alert('Це пртоти правил')
+           alert('Против правил')
        }
        gameWin();
-
     }
 
     return(

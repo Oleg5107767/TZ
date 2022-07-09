@@ -2,7 +2,7 @@ const initialState = {
     players : [],  
     winPlayer: 0,
     winPlayerSecond: 0,
-    showRegisteredFlag: true
+    showRegisteredFlag: true,
 }
 
 const reducer = (state = initialState, action) => {
@@ -22,12 +22,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 players: action.payload
             }
-        case 'REGISTERED_PLAYERS':
-            return{
-                ...state,
-                showRegisteredFlag: action.payload
-            }
-         
+
         default: return state
     }
 }

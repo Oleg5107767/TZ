@@ -1,5 +1,6 @@
+import React from "react";
 import { useSelector} from 'react-redux';
-import { Container, Grid, Box} from "@material-ui/core";
+import {  Grid} from "@material-ui/core";
 import { makeStyles } from '@material-ui/styles';
 
 
@@ -13,8 +14,8 @@ const CheckPlayers = () => {
     const {players, winPlayer, winPlayerSecond} = useSelector(state => state);
     const {user, userSecond} = players;
     const classes = useStyles();
+
     return(
-        
             <Grid
                 container
                 spacing={0}
